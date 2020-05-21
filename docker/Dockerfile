@@ -11,5 +11,5 @@ RUN rm -rf rm -rf /opt/rocketmq-4.4.0/conf/2m* && \
     rm -rf /opt/rocketmq-4.4.0/conf/broker.conf && \
     rm -rf /opt/rocketmq-4.4.0/bin/*.cmd
 
-#sudo docker build -t registry.cn-hangzhou.aliyuncs.com/hiningmeng/rocketmq:v4.4.0  .
+#sudo docker build -t 192.168.195.2/dev/rocketmq:v4.4.0 .
 

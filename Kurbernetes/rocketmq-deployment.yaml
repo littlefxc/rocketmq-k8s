@@ -24,7 +24,7 @@ spec:
         - name: ram-secret
       containers:
       - name: broker
-        image: registry.cn-hangzhou.aliyuncs.com/hiningmeng/rocketmq:v4.4.0
+        image: 192.168.195.2/dev/rocketmq:v4.4.0
         command: ["sh","-c","/opt/rocketmq-4.4.0/bin/mqbroker  -c /opt/rocketmq-4.4.0/conf/broker-a.properties"]
         imagePullPolicy: Always
         volumeMounts:
@@ -41,7 +41,7 @@ spec:
           - name: MAX_POSSIBLE_HEAP
             value: "4294967296"
       - name: namesrv
-        image: registry.cn-hangzhou.aliyuncs.com/hiningmeng/rocketmq:v4.4.0
+        image: 192.168.195.2/dev/rocketmq:v4.4.0
         command: ["sh","mqnamesrv"]
         imagePullPolicy: IfNotPresent
         ports:
