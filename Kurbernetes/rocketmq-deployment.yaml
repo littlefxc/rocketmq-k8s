@@ -25,7 +25,7 @@ spec:
           - mountPath: /root/store
             name: rocketmq-data
             subPath: mq-brokeroptstore
-          - name: bocketmq-broker-config
+          - name: rocketmq-broker-config
             mountPath: /opt/rocketmq-4.4.0/conf/broker-a.properties
             subPath: broker-a.properties
         env:
