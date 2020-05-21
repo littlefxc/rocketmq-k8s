@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rocketmq-admin
+  namespace: mq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      apps: rocketmq-admin
+  template:
+    metadata:
+      labels:
+        app: rocketmq-admin
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: apps.k8s.icjl/devops
+                    operator: Exists
+      containers:
+        - name: rocketmq-admin
+          image: styletang/rocketmq-console-ng
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: JAVA_OPTS
+              value: "-Drocketmq.namesrv.addr=rocketmq-a.mq.svc.cluster.local:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: rocketmq-admin
+  name: rocketmq-admin
+  namespace: mq
+spec:
+  ports:
+    - name: rocketmq-admin
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: rocketmq-admin
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: mq
+  name: rocketmq-admin
+  labels:
+    name: rocketmq-admin
+    ingress.k8s.icjl/business: assigned
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  tls:
+    - hosts:
+        - rocketmq-admin.hiningmeng.cn
+      secretName: icjl-net-secret
+  rules:
+    - host: rocketmq-admin.hiningmeng.cn
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: rocketmq-admin
+              servicePort: rocketmq-admin
