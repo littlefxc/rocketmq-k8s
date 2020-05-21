@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rocketmq-admin
-  namespace: mq
+  namespace: rocketmq
 spec:
   replicas: 1
   selector:
@@ -36,7 +36,7 @@ metadata:
   labels:
     app: rocketmq-admin
   name: rocketmq-admin
-  namespace: mq
+  namespace: rocketmq
 spec:
   ports:
     - name: rocketmq-admin
@@ -49,7 +49,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  namespace: mq
+  namespace: rocketmq
   name: rocketmq-admin
   labels:
     name: rocketmq-admin
