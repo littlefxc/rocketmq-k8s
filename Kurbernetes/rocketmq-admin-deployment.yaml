@@ -13,13 +13,6 @@ spec:
       labels:
         app: rocketmq-admin
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: apps.k8s.icjl/devops
-                    operator: Exists
       containers:
         - name: rocketmq-admin
           image: styletang/rocketmq-console-ng

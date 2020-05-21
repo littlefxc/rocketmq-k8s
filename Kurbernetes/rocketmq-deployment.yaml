@@ -13,15 +13,6 @@ spec:
      labels:
        app: rocketmq-a
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: apps.k8s.icjl/devops
-                operator: Exists
-      imagePullSecrets:
-        - name: ram-secret
       containers:
       - name: broker
         image: 192.168.195.2/dev/rocketmq:v4.4.0
