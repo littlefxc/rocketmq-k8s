@@ -7,7 +7,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      apps: rocketmq-admin
+      app: rocketmq-admin
   template:
     metadata:
       labels:

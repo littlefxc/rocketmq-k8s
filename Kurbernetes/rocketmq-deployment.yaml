@@ -7,14 +7,21 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      apps: rocketmq-a
+      app: rocketmq-a
   template:
     metadata:
      labels:
        app: rocketmq-a
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: apps.k8s.icjl/devops
+                operator: Exists
       imagePullSecrets:
-        - name: Always
+        - name: ram-secret
       containers:
       - name: broker
         image: 192.168.195.2/dev/rocketmq:v4.4.0
