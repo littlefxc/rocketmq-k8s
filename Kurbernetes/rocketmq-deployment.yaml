@@ -51,9 +51,9 @@ spec:
       - name: rocketmq-data
         persistentVolumeClaim:
           claimName: rocketmq-data-a
-      - name: bocketmq-broker-config
+      - name: rocketmq-broker-config
         configMap:
-          name: bocketmq-broker-config
+          name: rocketmq-broker-config
 ---
 apiVersion: v1
 kind: Service
